@@ -354,6 +354,17 @@ body {
 
 .search-wrapper:has(.searching)::before { display: block; }
 
+.search-field {
+  height: 80px;
+  line-height: 80;
+  padding-inline: 56px 16px;
+  outline: none;
+}
+
+.search-field::placeholder { color: var(--on-surface-variant-2); }
+
+
+
 
 
 
