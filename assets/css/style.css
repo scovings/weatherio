@@ -216,7 +216,7 @@ body {
 \*-----------------------------------*/
 
 .container {
-  min-width: 1600px;
+  /* min-width: 100px; */
   width: 100%;
   margin-inline: auto;
   padding: 16px;

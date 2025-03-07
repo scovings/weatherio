@@ -23,5 +23,20 @@ export const fetchData = function(URL, callback) {
 export const url = {
   currentWeather(lat, lon) {
     return `https://api.openweathermap.org/data/2.5/weather?${lat}&${lon}&units=metic`
+  },
+  forecast(lat, lon) {
+    return `https://api.openweathermap.org/data/2.5/forecast?${lat}&${lon}&units=metic`
+  },
+  airPollution(lat, lon) {
+    return `https://api.openweathermap.org/data/2.5/air_pollution?${lat}&${lon}`
+  },
+  reverseGeo(lat, lon) {
+    return `https://api.openweathermap.org/geo/1.0/reverse?${lat}&${lon}&limit=5`
+  },
+  /**
+   * @param {string} query Search query e.g: "Glasgow", "London"
+   */
+  geo(query) {
+    return `https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5`
   }
 }
