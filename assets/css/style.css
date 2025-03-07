@@ -783,7 +783,7 @@ article.container::before {
 \*-----------------------------------*/
 
 /**
- * responsive for large that 768px screen
+ * responsive for larger than 768px screen
  */
 
  @media (min-width: 768px) {
