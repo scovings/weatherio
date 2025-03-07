@@ -22,6 +22,6 @@ export const fetchData = function(URL, callback) {
 
 export const url = {
   currentWeather(lat, lon) {
-    return `https://api.openweathermap.org/data/2.5/weather?lat-23.7644025&lon=90.389015&units=metic&apid=20fdfb76008f0d97399a7057b61972e9`
+    return `https://api.openweathermap.org/data/2.5/weather?${lat}&${lon}&units=metic`
   }
 }
