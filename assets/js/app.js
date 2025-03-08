@@ -184,8 +184,8 @@ export const updateWeather = function (lat, lon) {
     fetchData(url.airPollution(lat, lon), function (airPollution) {
 
       const [{
-        main: {aqi},
-        components: { no2, o3, so2, so2_5 }
+        main: { aqi },
+        components: { no2, o3, so2, pm2_5 }
       }] = airPollution.list;
 
       const card = document.createElement("div");
@@ -207,35 +207,35 @@ export const updateWeather = function (lat, lon) {
                     <ul class="card-list">
 
                       <li class="card-item">
-                        <p class="title-1">23.3</p>
+                        <p class="title-1">${Number(pm2_5).toPrecision(3)}</p>
 
                         <p class="label-1">PM<sub>2.5</sub></p>
                       </li>
 
                       <li class="card-item">
-                        <p class="title-1">23.3</p>
+                        <p class="title-1">${Number(so2).toPrecision(3)}</p>
 
-                        <p class="label-1">PM<sub>2.5</sub></p>
+                        <p class="label-1">SO<sub>2</sub></p>
                       </li>
 
                       <li class="card-item">
-                        <p class="title-1">23.3</p>
+                        <p class="title-1">${Number(no2).toPrecision(3)}</p>
 
-                        <p class="label-1">PM<sub>2.5</sub></p>
+                        <p class="label-1">NO<sub>2</sub></p>
                       </li>
 
                       <li class="card-item">
-                        <p class="title-1">23.3</p>
+                        <p class="title-1">${Number(o3).toPrecision(3)}</p>
 
-                        <p class="label-1">PM<sub>2.5</sub></p>
+                        <p class="label-1">O<sub>3</sub></p>
                       </li>
 
                     </ul>
 
                   </div>
 
-                  <span class="badge aqi-1 label-1" title="aqi message">
-                    Good
+                  <span class="badge aqi-${aqi} label-{aqi}" title="${module.aqiText[aqi].message}">
+                    ${module.aqiText[aqi].level}
                   </span>
 
                 </div>
@@ -252,7 +252,7 @@ export const updateWeather = function (lat, lon) {
                       <div>
                         <p class="label-1">Sunrise</p>
 
-                        <p class="title-1">6:30 AM</p>
+                        <p class="title-1">${module.getTime(sunriseUnixUTC, timezone)}</p>
                       </div>
                     </div>
 
@@ -262,7 +262,7 @@ export const updateWeather = function (lat, lon) {
                       <div>
                         <p class="label-1">Sunset</p>
 
-                        <p class="title-1">5:54 PM</p>
+                        <p class="title-1">${module.getTime(sunriseUnixUTC, timezone)}</p>
                       </div>
                     </div>
 
@@ -277,7 +277,7 @@ export const updateWeather = function (lat, lon) {
                   <div class="wrapper">
                     <span class="m-icon">humidity_percentage</span>
 
-                    <p class="title-1">35<sub>%</sub></p>
+                    <p class="title-1"${humidity}<sub>%</sub></p>
                   </div>
 
                 </div>
@@ -289,7 +289,7 @@ export const updateWeather = function (lat, lon) {
                   <div class="wrapper">
                     <span class="m-icon">airwave</span>
 
-                    <p class="title-1">1052<sub>hPa</sub></p>
+                    <p class="title-1">${pressure}<sub>hPa</sub></p>
                   </div>
 
                 </div>
@@ -301,7 +301,7 @@ export const updateWeather = function (lat, lon) {
                   <div class="wrapper">
                     <span class="m-icon">visibility</span>
 
-                    <p class="title-1">10<sub>km</sub></p>
+                    <p class="title-1">${visibility / 1000}<sub>km</sub></p>
                   </div>
 
                 </div>
@@ -313,13 +313,15 @@ export const updateWeather = function (lat, lon) {
                   <div class="wrapper">
                     <span class="m-icon">thermostat</span>
 
-                    <p class="title-1">25&deg;<sub>C</sub></p>
+                    <p class="title-1">${parseInt(feels_like)}&deg;<sub>C</sub></p>
                   </div>
 
                 </div>
 
               </div>
-      `
+      `;
+
+      highlightSection.appendChild(card);
 
     });
 
